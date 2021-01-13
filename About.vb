@@ -1,8 +1,9 @@
-Option Explicit On 
+Option Explicit On
 Option Strict On
+Option Infer On
 
-Public Class About
-  Inherits System.Windows.Forms.Form
+Friend Class About
+  Inherits Form
 
 #Region " Windows Form Designer generated code "
 
@@ -17,7 +18,7 @@ Public Class About
   End Sub
 
   'Form overrides dispose to clean up the component list.
-  Protected Overloads Overrides Sub Dispose(ByVal disposing As Boolean)
+  Protected Overloads Overrides Sub Dispose(disposing As Boolean)
     If disposing Then
       If Not (components Is Nothing) Then
         components.Dispose()
@@ -27,7 +28,7 @@ Public Class About
   End Sub
 
   'Required by the Windows Form Designer
-  Private components As System.ComponentModel.IContainer
+  Private ReadOnly components As System.ComponentModel.IContainer
 
   'NOTE: The following procedure is required by the Windows Form Designer
   'It can be modified using the Windows Form Designer.  
@@ -39,70 +40,73 @@ Public Class About
   Friend WithEvents DevelopedByLabel As System.Windows.Forms.Label
   Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
   <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
-    Dim resources As System.Resources.ResourceManager = New System.Resources.ResourceManager(GetType(About))
-    Me.AcceptActionButton = New System.Windows.Forms.Button
-    Me.ProductLabel = New System.Windows.Forms.Label
-    Me.VersionLabel = New System.Windows.Forms.Label
-    Me.CopyrightLabel = New System.Windows.Forms.Label
-    Me.DevelopedByLabel = New System.Windows.Forms.Label
-    Me.PictureBox1 = New System.Windows.Forms.PictureBox
+    Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(About))
+    Me.AcceptActionButton = New System.Windows.Forms.Button()
+    Me.ProductLabel = New System.Windows.Forms.Label()
+    Me.VersionLabel = New System.Windows.Forms.Label()
+    Me.CopyrightLabel = New System.Windows.Forms.Label()
+    Me.DevelopedByLabel = New System.Windows.Forms.Label()
+    Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+    CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.SuspendLayout()
     '
     'AcceptActionButton
     '
     Me.AcceptActionButton.DialogResult = System.Windows.Forms.DialogResult.OK
     Me.AcceptActionButton.FlatStyle = System.Windows.Forms.FlatStyle.System
-    Me.AcceptActionButton.Location = New System.Drawing.Point(216, 120)
+    Me.AcceptActionButton.Location = New System.Drawing.Point(259, 148)
     Me.AcceptActionButton.Name = "AcceptActionButton"
+    Me.AcceptActionButton.Size = New System.Drawing.Size(90, 28)
     Me.AcceptActionButton.TabIndex = 0
     Me.AcceptActionButton.Text = "&OK"
     '
     'ProductLabel
     '
-    Me.ProductLabel.Location = New System.Drawing.Point(64, 16)
+    Me.ProductLabel.Location = New System.Drawing.Point(77, 20)
     Me.ProductLabel.Name = "ProductLabel"
-    Me.ProductLabel.Size = New System.Drawing.Size(168, 23)
+    Me.ProductLabel.Size = New System.Drawing.Size(201, 28)
     Me.ProductLabel.TabIndex = 1
     Me.ProductLabel.Text = "Solitaire Checkers"
     '
     'VersionLabel
     '
-    Me.VersionLabel.Location = New System.Drawing.Point(64, 40)
+    Me.VersionLabel.Location = New System.Drawing.Point(77, 49)
     Me.VersionLabel.Name = "VersionLabel"
-    Me.VersionLabel.Size = New System.Drawing.Size(232, 23)
+    Me.VersionLabel.Size = New System.Drawing.Size(278, 29)
     Me.VersionLabel.TabIndex = 2
     Me.VersionLabel.Text = "Version [version] (Build [build])"
     '
     'CopyrightLabel
     '
-    Me.CopyrightLabel.Location = New System.Drawing.Point(64, 64)
+    Me.CopyrightLabel.Location = New System.Drawing.Point(77, 79)
     Me.CopyrightLabel.Name = "CopyrightLabel"
-    Me.CopyrightLabel.Size = New System.Drawing.Size(232, 23)
+    Me.CopyrightLabel.Size = New System.Drawing.Size(278, 28)
     Me.CopyrightLabel.TabIndex = 3
-    Me.CopyrightLabel.Text = "Copyright © 2005 AddressOf.com"
+    Me.CopyrightLabel.Text = "Copyright © 2005-2021 AddressOf.com"
     '
     'DevelopedByLabel
     '
-    Me.DevelopedByLabel.Location = New System.Drawing.Point(64, 88)
+    Me.DevelopedByLabel.Location = New System.Drawing.Point(77, 108)
     Me.DevelopedByLabel.Name = "DevelopedByLabel"
-    Me.DevelopedByLabel.Size = New System.Drawing.Size(232, 23)
+    Me.DevelopedByLabel.Size = New System.Drawing.Size(278, 29)
     Me.DevelopedByLabel.TabIndex = 4
     Me.DevelopedByLabel.Text = "Developed by Cory Smith"
     '
     'PictureBox1
     '
     Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
-    Me.PictureBox1.Location = New System.Drawing.Point(8, 16)
+    Me.PictureBox1.Location = New System.Drawing.Point(10, 20)
     Me.PictureBox1.Name = "PictureBox1"
-    Me.PictureBox1.Size = New System.Drawing.Size(48, 40)
+    Me.PictureBox1.Size = New System.Drawing.Size(50, 50)
+    Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
     Me.PictureBox1.TabIndex = 5
     Me.PictureBox1.TabStop = False
     '
     'About
     '
     Me.AcceptButton = Me.AcceptActionButton
-    Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
-    Me.ClientSize = New System.Drawing.Size(304, 160)
+    Me.AutoScaleBaseSize = New System.Drawing.Size(6, 16)
+    Me.ClientSize = New System.Drawing.Size(359, 184)
     Me.Controls.Add(Me.PictureBox1)
     Me.Controls.Add(Me.DevelopedByLabel)
     Me.Controls.Add(Me.CopyrightLabel)
@@ -116,15 +120,17 @@ Public Class About
     Me.ShowInTaskbar = False
     Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
     Me.Text = "About Solitaire Checkers"
+    CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
     Me.ResumeLayout(False)
 
   End Sub
 
 #End Region
 
-  Private Sub About_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-    Dim version As New Version(Application.ProductVersion)
-    VersionLabel.Text = VersionLabel.Text.Replace("[version]", CStr(version.Major) & "." & CStr(version.Minor)).Replace("[build]", CStr(version.Build))
+  Private Sub About_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Dim version = New Version(Application.ProductVersion)
+    VersionLabel.Text = VersionLabel.Text.Replace("[version]", $"{version.Major}.{version.Minor}") _
+                                         .Replace("[build]", $"{version.Build}")
   End Sub
 
 End Class

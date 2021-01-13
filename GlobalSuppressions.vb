@@ -1,1 +1,0 @@
-<Assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Mobility", "CA1601:DoNotUseTimersThatPreventPowerStateChanges", Scope:="member", Target:="CheckersSolitaire.Board.Replay(CheckersSolitaire.HistoryCollection,System.Boolean):System.Void")> 

@@ -1,8 +1,8 @@
 Public Class HlsManager
 
   Private Class NativeMethods
-    Public Declare Sub ColorRGBToHLS Lib "shlwapi.dll" (ByVal RGB As Integer, ByRef h As Byte, ByRef l As Byte, ByRef s As Byte)
-    Public Declare Function ColorHLSToRGB Lib "shlwapi.dll" (ByVal h As Byte, ByVal l As Byte, ByVal s As Byte) As Integer
+    Public Declare Sub ColorRGBToHLS Lib "shlwapi.dll" (RGB As Integer, ByRef h As Byte, ByRef l As Byte, ByRef s As Byte)
+    Public Declare Function ColorHLSToRGB Lib "shlwapi.dll" (h As Byte, l As Byte, s As Byte) As Integer
   End Class
 
   Public Sub New()
@@ -10,7 +10,7 @@ Public Class HlsManager
 
 #Region "Translate Colors"
 
-  Public Shared Function Convert(ByVal c As Color, ByVal h As Integer, ByVal l As Integer, ByVal s As Integer) As Color
+  Public Shared Function Convert(c As Color, h As Integer, l As Integer, s As Integer) As Color
 
     Dim vh As Byte '= 0
     Dim vl As Byte '= 0
@@ -60,20 +60,20 @@ Public Class HlsManager
 
 #Region "State: Normal"
 
-  Public Function CenterColor(ByVal c As Color) As Color
+  Public Shared Function CenterColor(c As Color) As Color
     Return Convert(c, 0, 60, 0)
   End Function
 
-  Public Function SurroundColors(ByVal c As Color) As Color()
+  Public Shared Function SurroundColors(c As Color) As Color()
     Dim colors As Color() = {Convert(c, 0, -17, 0)}
     Return colors
   End Function
 
-  Public Function DarkColor(ByVal c As Color) As Color
+  Public Shared Function DarkColor(c As Color) As Color
     Return Convert(c, 0, -80, 0)
   End Function
 
-  Public Function LightColor(ByVal c As Color) As Color
+  Public Shared Function LightColor(c As Color) As Color
     Return Convert(c, 0, 80, 0)
   End Function
 
@@ -81,11 +81,11 @@ Public Class HlsManager
 
 #Region "State: MouseOver"
 
-  Public Function CenterColorLight(ByVal c As Color) As Color
+  Public Shared Function CenterColorLight(c As Color) As Color
     Return Convert(c, 0, 100, 0)
   End Function
 
-  Public Function SurroundColorsLight(ByVal c As Color) As Color()
+  Public Shared Function SurroundColorsLight(c As Color) As Color()
     Dim colors As Color() = {Convert(c, 0, -5, 0)}
     Return colors
   End Function
@@ -94,11 +94,11 @@ Public Class HlsManager
 
 #Region "State: Pressed"
 
-  Public Function CenterColorDark(ByVal c As Color) As Color
+  Public Shared Function CenterColorDark(c As Color) As Color
     Return Convert(c, 0, 60, 0)
   End Function
 
-  Public Function SurroundColorsDark(ByVal c As Color) As Color()
+  Public Shared Function SurroundColorsDark(c As Color) As Color()
     Dim colors As Color() = {Convert(c, 0, -30, 0)}
     Return colors
   End Function
@@ -107,20 +107,20 @@ Public Class HlsManager
 
 #Region "State: Disabled"
 
-  Public Function CenterColorD(ByVal c As Color) As Color
+  Public Shared Function CenterColorD(c As Color) As Color
     Return Convert(c, 0, 20, 0)
   End Function
 
-  Public Function SurroundColorsD(ByVal c As Color) As Color()
+  Public Shared Function SurroundColorsD(c As Color) As Color()
     Dim colors As Color() = {Convert(c, 0, -20, 0)}
     Return colors
   End Function
 
-  Public Function DarkColorD(ByVal c As Color) As Color
+  Public Shared Function DarkColorD(c As Color) As Color
     Return Convert(c, 0, -80, 0)
   End Function
 
-  Public Function LightColorD(ByVal c As Color) As Color
+  Public Shared Function LightColorD(c As Color) As Color
     Return Convert(c, 0, 40, 0)
   End Function
 
@@ -128,19 +128,19 @@ Public Class HlsManager
 
 #Region "State: Normal Flat"
 
-  Public Shared Function ColorFlat1(ByVal c As Color) As Color
+  Public Shared Function ColorFlat1(c As Color) As Color
     Return Convert(c, 0, 17, 0)
   End Function
 
-  Public Shared Function ColorFlat2(ByVal c As Color) As Color
+  Public Shared Function ColorFlat2(c As Color) As Color
     Return Convert(c, 0, -10, 0)
   End Function
 
-  Public Shared Function ColorFlat3(ByVal c As Color) As Color
+  Public Shared Function ColorFlat3(c As Color) As Color
     Return Convert(c, 0, 65, 0)
   End Function
 
-  Public Shared Function ColorFlat4(ByVal c As Color) As Color
+  Public Shared Function ColorFlat4(c As Color) As Color
     Return Convert(c, 0, -65, 0)
   End Function
 
@@ -148,7 +148,7 @@ Public Class HlsManager
 
 #Region "State: MouseOver Flat"
 
-  Public Function ColorLightFlat(ByVal c As Color) As Color
+  Public Shared Function ColorLightFlat(c As Color) As Color
     Return Convert(c, 0, 10, 0)
   End Function
 
@@ -156,7 +156,7 @@ Public Class HlsManager
 
 #Region "State: Pressed Flat"
 
-  Public Function ColorDarkFlat(ByVal c As Color) As Color
+  Public Shared Function ColorDarkFlat(c As Color) As Color
     Return Convert(c, 0, -20, 0)
   End Function
 
@@ -164,19 +164,19 @@ Public Class HlsManager
 
 #Region "State: Disabled Flat"
 
-  Public Function ColorFlat1D(ByVal c As Color) As Color
+  Public Shared Function ColorFlat1D(c As Color) As Color
     Return Convert(c, 0, 5, 0)
   End Function
 
-  Public Function ColorFlat2D(ByVal c As Color) As Color
+  Public Shared Function ColorFlat2D(c As Color) As Color
     Return Convert(c, 0, -20, 0)
   End Function
 
-  Public Function ColorFlat3D(ByVal c As Color) As Color
+  Public Shared Function ColorFlat3D(c As Color) As Color
     Return Convert(c, 0, 33, 0)
   End Function
 
-  Public Function ColorFlat4D(ByVal c As Color) As Color
+  Public Shared Function ColorFlat4D(c As Color) As Color
     Return Convert(c, 0, -65, 0)
   End Function
 
@@ -184,11 +184,11 @@ Public Class HlsManager
 
 #Region "Test"
 
-  Public Function TestCenterColor(ByVal c As Color) As Color
+  Public Shared Function TestCenterColor(c As Color) As Color
     Return Convert(c, -1, 74 + 20, 16)
   End Function
 
-  Public Function TestSurroundColors(ByVal c As Color) As Color()
+  Public Shared Function TestSurroundColors(c As Color) As Color()
     Dim colors As Color() = {Convert(c, 5, -4, 16)}
     Return colors
   End Function

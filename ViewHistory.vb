@@ -1,34 +1,38 @@
+Option Explicit On
+Option Strict On
+Option Infer On
+
 Public Class ViewHistory
-    Inherits System.Windows.Forms.Form
+  Inherits Form
 
 #Region " Windows Form Designer generated code "
 
-    Public Sub New()
-        MyBase.New()
+  Public Sub New()
+    MyBase.New()
 
-        'This call is required by the Windows Form Designer.
-        InitializeComponent()
+    'This call is required by the Windows Form Designer.
+    InitializeComponent()
 
-        'Add any initialization after the InitializeComponent() call
+    'Add any initialization after the InitializeComponent() call
 
-    End Sub
+  End Sub
 
-    'Form overrides dispose to clean up the component list.
-    Protected Overloads Overrides Sub Dispose(ByVal disposing As Boolean)
-        If disposing Then
-            If Not (components Is Nothing) Then
-                components.Dispose()
-            End If
-        End If
-        MyBase.Dispose(disposing)
-    End Sub
+  'Form overrides dispose to clean up the component list.
+  Protected Overloads Overrides Sub Dispose(disposing As Boolean)
+    If disposing Then
+      If Not (components Is Nothing) Then
+        components.Dispose()
+      End If
+    End If
+    MyBase.Dispose(disposing)
+  End Sub
 
-    'Required by the Windows Form Designer
-    Private components As System.ComponentModel.IContainer
+  'Required by the Windows Form Designer
+  Private ReadOnly components As System.ComponentModel.IContainer
 
-    'NOTE: The following procedure is required by the Windows Form Designer
-    'It can be modified using the Windows Form Designer.  
-    'Do not modify it using the code editor.
+  'NOTE: The following procedure is required by the Windows Form Designer
+  'It can be modified using the Windows Form Designer.  
+  'Do not modify it using the code editor.
   Friend WithEvents CloseActionButton As System.Windows.Forms.Button
   Friend WithEvents HistoryListView As System.Windows.Forms.ListView
   Friend WithEvents ColumnHeader1 As System.Windows.Forms.ColumnHeader
@@ -124,43 +128,16 @@ Public Class ViewHistory
 
 #End Region
 
-  Private m_rows As Integer
-  Private m_columns As Integer
-  Private m_depth As Integer
-
   Public Property Rows() As Integer
-    Get
-      Return m_rows
-    End Get
-    Set(ByVal Value As Integer)
-      m_rows = Value
-    End Set
-  End Property
-
   Public Property Columns() As Integer
-    Get
-      Return m_columns
-    End Get
-    Set(ByVal Value As Integer)
-      m_columns = Value
-    End Set
-  End Property
-
   Public Property Depth() As Integer
-    Get
-      Return m_depth
-    End Get
-    Set(ByVal Value As Integer)
-      m_depth = Value
-    End Set
-  End Property
 
-  Private Sub HistoryListView_KeyUp(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles HistoryListView.KeyUp
+  Private Sub HistoryListView_KeyUp(sender As Object, e As KeyEventArgs) Handles HistoryListView.KeyUp
     If e.Control AndAlso e.KeyCode = Keys.C Then
-      Dim tag As String = """Checkers Solitaire"",""" & Application.ProductVersion & """,""" & CStr(m_rows) & """,""" & CStr(m_columns) & """,""" & CStr(m_depth) & """" & vbCrLf
-      Dim csv As String = tag & """Move #"",""Start Row"",""Start Column"",""Destination Row"",""Destination Column""" & vbCrLf
+      Dim tag = $"""Checkers Solitaire"",""{Application.ProductVersion}"",""{Rows}"",""{Columns}"",""{Depth}""{vbCrLf}"
+      Dim csv = $"{tag}""Move #"",""Start Row"",""Start Column"",""Destination Row"",""Destination Column""{vbCrLf}"
       For Each item As ListViewItem In HistoryListView.Items
-        csv &= item.SubItems(0).Text & "," & item.SubItems(1).Text & "," & item.SubItems(2).Text & "," & item.SubItems(4).Text & "," & item.SubItems(5).Text & vbCrLf
+        csv &= $"{item.SubItems(0).Text},{item.SubItems(1).Text},{item.SubItems(2).Text},{item.SubItems(4).Text},{item.SubItems(5).Text}{vbCrLf}"
       Next
       Clipboard.SetDataObject(csv, True)
     ElseIf e.Control AndAlso e.KeyCode = Keys.A Then
@@ -170,13 +147,13 @@ Public Class ViewHistory
     End If
   End Sub
 
-  Private Sub ViewHistory_Activated(ByVal sender As Object, ByVal e As System.EventArgs) Handles MyBase.Activated
+  Private Sub ViewHistory_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
     If HistoryListView.CanFocus Then
       HistoryListView.Focus()
     End If
   End Sub
 
-  Private Sub ViewHistory_GotFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles MyBase.GotFocus
+  Private Sub ViewHistory_GotFocus(sender As Object, e As EventArgs) Handles MyBase.GotFocus
     HistoryListView.Focus()
   End Sub
 

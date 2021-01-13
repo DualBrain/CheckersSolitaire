@@ -1,34 +1,38 @@
-Public Class Options
-    Inherits System.Windows.Forms.Form
+Option Explicit On
+Option Strict On
+Option Infer On
+
+Friend Class Options
+  Inherits Form
 
 #Region " Windows Form Designer generated code "
 
-    Public Sub New()
-        MyBase.New()
+  Public Sub New()
+    MyBase.New()
 
-        'This call is required by the Windows Form Designer.
-        InitializeComponent()
+    'This call is required by the Windows Form Designer.
+    InitializeComponent()
 
-        'Add any initialization after the InitializeComponent() call
+    'Add any initialization after the InitializeComponent() call
 
-    End Sub
+  End Sub
 
-    'Form overrides dispose to clean up the component list.
-    Protected Overloads Overrides Sub Dispose(ByVal disposing As Boolean)
-        If disposing Then
-            If Not (components Is Nothing) Then
-                components.Dispose()
-            End If
-        End If
-        MyBase.Dispose(disposing)
-    End Sub
+  'Form overrides dispose to clean up the component list.
+  Protected Overloads Overrides Sub Dispose(disposing As Boolean)
+    If disposing Then
+      If Not (components Is Nothing) Then
+        components.Dispose()
+      End If
+    End If
+    MyBase.Dispose(disposing)
+  End Sub
 
-    'Required by the Windows Form Designer
-    Private components As System.ComponentModel.IContainer
+  'Required by the Windows Form Designer
+  Private ReadOnly components As System.ComponentModel.IContainer
 
-    'NOTE: The following procedure is required by the Windows Form Designer
-    'It can be modified using the Windows Form Designer.  
-    'Do not modify it using the code editor.
+  'NOTE: The following procedure is required by the Windows Form Designer
+  'It can be modified using the Windows Form Designer.  
+  'Do not modify it using the code editor.
   Friend WithEvents AcceptActionButton As System.Windows.Forms.Button
   Friend WithEvents CancelActionButton As System.Windows.Forms.Button
   Friend WithEvents Label1 As System.Windows.Forms.Label
@@ -164,7 +168,7 @@ Public Class Options
 
 #End Region
 
-  Public Sub New(ByVal rows As Integer, ByVal columns As Integer, ByVal depth As Integer)
+  Public Sub New(rows As Integer, columns As Integer, depth As Integer)
     Me.New()
     Me.Rows = rows
     Me.Columns = columns
@@ -175,8 +179,8 @@ Public Class Options
     Get
       Return CInt(RowsComboBox.SelectedItem)
     End Get
-    Set(ByVal Value As Integer)
-      For index As Integer = 0 To RowsComboBox.Items.Count - 1
+    Set(Value As Integer)
+      For index = 0 To RowsComboBox.Items.Count - 1
         If CInt(RowsComboBox.Items(index)) = Value Then
           RowsComboBox.SelectedIndex = index
           Exit For
@@ -189,8 +193,8 @@ Public Class Options
     Get
       Return CInt(ColumnsComboBox.SelectedItem)
     End Get
-    Set(ByVal Value As Integer)
-      For index As Integer = 0 To ColumnsComboBox.Items.Count - 1
+    Set(Value As Integer)
+      For index = 0 To ColumnsComboBox.Items.Count - 1
         If CInt(ColumnsComboBox.Items(index)) = Value Then
           ColumnsComboBox.SelectedIndex = index
           Exit For
@@ -203,8 +207,8 @@ Public Class Options
     Get
       Return CInt(PiecesComboBox.SelectedItem)
     End Get
-    Set(ByVal Value As Integer)
-      For index As Integer = 0 To PiecesComboBox.Items.Count - 1
+    Set(Value As Integer)
+      For index = 0 To PiecesComboBox.Items.Count - 1
         If CInt(PiecesComboBox.Items(index)) = Value Then
           PiecesComboBox.SelectedIndex = index
           Exit For

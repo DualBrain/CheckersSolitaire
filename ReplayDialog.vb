@@ -1,7 +1,8 @@
-Option Explicit On 
+Option Explicit On
 Option Strict On
+Option Infer On
 
-Public Class ReplayDialog
+Friend Class ReplayDialog
   Inherits System.Windows.Forms.Form
 
 #Region " Windows Form Designer generated code "
@@ -17,7 +18,7 @@ Public Class ReplayDialog
   End Sub
 
   'Form overrides dispose to clean up the component list.
-  Protected Overloads Overrides Sub Dispose(ByVal disposing As Boolean)
+  Protected Overloads Overrides Sub Dispose(disposing As Boolean)
     If disposing Then
       If Not (components Is Nothing) Then
         components.Dispose()
@@ -27,7 +28,7 @@ Public Class ReplayDialog
   End Sub
 
   'Required by the Windows Form Designer
-  Private components As System.ComponentModel.IContainer
+  Private ReadOnly components As System.ComponentModel.IContainer
 
   'NOTE: The following procedure is required by the Windows Form Designer
   'It can be modified using the Windows Form Designer.  

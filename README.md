@@ -1,7 +1,7 @@
 # CheckersSolitaire
-An original game by Cory Smith inspired by a game written circa 1978 by David H. Ahl. (VB.NET)
+An original game by designed by Cory Smith originally inspired by a game written circa 1978 by David H. Ahl. (VB.NET)
 
-The simplest way to get started with the code is to use <a href=http://www.visualstudio.com/en-us/news/vs2013-community-vs.aspx>Microsoft Visual Studio 2013 Community Edition</a> (It's FREE!).
+The simplest way to get started with the code is to use [Microsoft Visual Studio 2019 Community Edition](https://visualstudio.microsoft.com/) (It's FREE!).
 
 <P align=center><IMG src="http://www.addressof.com/articles/checkerssolitaire_v0.1.jpg"><BR><EM>Shown with Hints enabled. (v0.1.5)</EM></P>
 
@@ -21,12 +21,15 @@ Features:
 - (0.1.6) Can use CTRL+A to select all of the items in the history and CTRL+C to copy them into the clipboard (in .csv format). 
 - (0.1.7) .csv format modified to support different size board configurations.
 - (0.1.7) Allows you to not only save the history of your game, but you can now prove to your friends that you actually did get the score you say you did. ;-)
+- (0.1.8) Made the move to WinForms on .NET 5!!!
 
 History:
 
-This game was inspired by a game written by David H. Ahl that was published in a book written circa 1978 called <a href=http://www.atariarchives.org/basicgames/>Basic Computer Games: Microcomputer Edition</a>.  I started with the description of the game (which contained the rules) and wrote Checkers Solitaire from there.
+This game was inspired by a game written by David H. Ahl that was published in a book written circa 1978 called [Basic Computer Games: Microcomputer Edition](http://www.atariarchives.org/basicgames/).  I started with the description of the game (which contained the rules) and wrote Checkers Solitaire from there.
 
-If your interested in finding out more about the game that inspired this one, you can actually read all about it yourself thanks to <a href=http://www.atariarchives.org/>AtariArchives.org</a>.  David's version of the game is called "<a href=http://www.atariarchives.org/basicgames/showpage.php?page=122>One Check</a>" (following this link will take you to a scanned image of the pages from the book).  
+If your interested in finding out more about the game that inspired this one, you can actually read all about it yourself thanks to [AtariArchives.org](http://www.atariarchives.org/).  David's version of the game is called "[One Check](http://www.atariarchives.org/basicgames/showpage.php?page=122)" (following this link will take you to a scanned image of the pages from the book).  
+
+Update (2021-01-12): The last time I looked at this project was to make it available on GitHub back in 2012; prior to that it was published on AddressOf.com around 2005.  In this update, migrated to WinForms on .NET 5!
 
 Notes:
 
@@ -34,4 +37,4 @@ Currently, the game is pretty complete.  As with any development, there are stil
 
 Special Thanks:
 
-Thanks to <a href=http://www.jasonbock.net/>Jason Bock</a> for testing and providing feedback.
+Thanks to [Jason Bock](http://www.jasonbock.net/) for testing and providing feedback.
