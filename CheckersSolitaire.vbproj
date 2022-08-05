@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net5.0-windows</TargetFramework>
+    <TargetFramework>net6.0-windows</TargetFramework>
     <RootNamespace>CheckersSolitaire</RootNamespace>
     <StartupObject>CheckersSolitaire.Main</StartupObject>
     <UseWindowsForms>true</UseWindowsForms>
@@ -13,7 +13,7 @@
 	<Authors>Cory Smith</Authors>
 	<Company>AddressOf.com</Company>
 	<Product>Checkers Solitaire</Product>
-	<Copyright>(c) 2005-2021, AddressOf.com</Copyright>
+	<Copyright>(c) 2005-2022, AddressOf.com</Copyright>
 	<TrimMode>Link</TrimMode>
 	<IncludeNativeLibrariesForSelfExtract>True</IncludeNativeLibrariesForSelfExtract>
   </PropertyGroup>

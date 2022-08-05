@@ -82,7 +82,7 @@ Friend Class About
     Me.CopyrightLabel.Name = "CopyrightLabel"
     Me.CopyrightLabel.Size = New System.Drawing.Size(278, 28)
     Me.CopyrightLabel.TabIndex = 3
-    Me.CopyrightLabel.Text = "Copyright © 2005-2021 AddressOf.com"
+    Me.CopyrightLabel.Text = "Copyright © 2005-2022 Cory Smith"
     '
     'DevelopedByLabel
     '
