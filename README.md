@@ -24,6 +24,7 @@ Features:
 - (0.1.7) .csv format modified to support different size board configurations.
 - (0.1.7) Allows you to not only save the history of your game, but you can now prove to your friends that you actually did get the score you say you did. ;-)
 - (0.1.8) Made the move to WinForms on .NET 5!!!
+- (0.1.8a) Made the move to .NET 6.
 
 History:
 
