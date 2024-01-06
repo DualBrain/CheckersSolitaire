@@ -1,6 +1,6 @@
 # Checkers Solitaire
 
-<P align=center><IMG src="http://www.addressof.com/assets/img/checkerssolitaire_v0.1.jpg"><BR><EM>Shown with Hints enabled. (v0.1.5)</EM></P>
+<P align=center><IMG src="http://www.addressof.com/assets/img/checkers_solitaire_v0.1.9.png"><BR><EM>Shown with Hints enabled. (v0.1.9)</EM></P>
 
 An original game by designed by Cory Smith that is inspired by "[One Check](http://www.atariarchives.org/basicgames/showpage.php?page=122)" written circa 1978 by David H. Ahl.
 
