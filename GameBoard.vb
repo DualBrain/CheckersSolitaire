@@ -1,53 +1,18 @@
-Option Explicit On
-Option Strict On
-Option Infer On
+﻿Imports System.Drawing.Drawing2D
 
-Imports System.Drawing.Drawing2D
-
-Public Class Board
-  Inherits UserControl
-
-#Region " Windows Form Designer generated code "
+Public Class GameBoard
 
   Public Sub New()
-    MyBase.New()
 
-    'This call is required by the Windows Form Designer.
+    ' This call is required by the designer.
     InitializeComponent()
 
-    'Add any initialization after the InitializeComponent() call
-    Me.SetStyle(ControlStyles.DoubleBuffer, True)
-    Me.SetStyle(ControlStyles.AllPaintingInWmPaint, True)
-    Me.SetStyle(ControlStyles.UserPaint, True)
+    ' Add any initialization after the InitializeComponent() call.
+    SetStyle(ControlStyles.DoubleBuffer, True)
+    SetStyle(ControlStyles.AllPaintingInWmPaint, True)
+    SetStyle(ControlStyles.UserPaint, True)
 
   End Sub
-
-  'UserControl overrides dispose to clean up the component list.
-  Protected Overloads Overrides Sub Dispose(disposing As Boolean)
-    If disposing Then
-      If Not (components Is Nothing) Then
-        components.Dispose()
-      End If
-    End If
-    MyBase.Dispose(disposing)
-  End Sub
-
-  'Required by the Windows Form Designer
-  Private ReadOnly components As System.ComponentModel.IContainer
-
-  'NOTE: The following procedure is required by the Windows Form Designer
-  'It can be modified using the Windows Form Designer.  
-  'Do not modify it using the code editor.
-  <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
-    '
-    'Board
-    '
-    Me.Name = "Board"
-    Me.Size = New System.Drawing.Size(344, 248)
-
-  End Sub
-
-#End Region
 
   Public Event ReplayBegin As EventHandler
   Public Event ReplayFinish As EventHandler
@@ -64,7 +29,7 @@ Public Class Board
 
   Private WithEvents ReplayTimer As Timer
 
-  Private m_history As List(Of History)
+  Private m_history As List(Of GameHistory)
 
   Public Enum State
     None
@@ -118,7 +83,7 @@ Public Class Board
 
   End Structure
 
-  Public ReadOnly Property History() As List(Of History)
+  Public ReadOnly Property History() As List(Of GameHistory)
     Get
       Return m_history
     End Get
@@ -200,15 +165,15 @@ Public Class Board
     End Set
   End Property
 
-  Public Sub Replay(history As List(Of History))
+  Public Sub Replay(history As List(Of GameHistory))
     Replay(history, True)
   End Sub
 
   Private m_replay As Boolean
   Private m_replayIndex As Integer
-  Private m_replayHistory As List(Of History)
+  Private m_replayHistory As List(Of GameHistory)
 
-  Public Sub Replay(history As List(Of History), wait As Boolean)
+  Public Sub Replay(history As List(Of GameHistory), wait As Boolean)
 
     m_replay = True
     m_replayIndex = 0
@@ -285,7 +250,7 @@ Public Class Board
             m_pieces(jumped.Row, jumped.Column) = State.None
             m_pieces(destination.Row, destination.Column) = State.Active
             m_pieceCount -= 1
-            m_history.Add(New History(source, destination))
+            m_history.Add(New GameHistory(source, destination))
             RaiseEvent PieceMoved(Me, New MoveEventArgs(source, destination))
           Else
             Stop
@@ -360,7 +325,7 @@ Public Class Board
     SetColors()
 
     If m_history Is Nothing Then
-      m_history = New List(Of History)
+      m_history = New List(Of GameHistory)
     End If
     m_history.Clear()
 
@@ -479,10 +444,10 @@ Public Class Board
 
     ' Draw the board.
     e.Graphics.DrawRectangle(Pens.Black, 0, 0, DisplayRectangle.Width - 1, DisplayRectangle.Height - 1)
-    For x = sx To Me.Width - sx Step sx
+    For x = sx To Width - sx Step sx
       e.Graphics.DrawLine(Pens.Black, x, 0, x, DisplayRectangle.Height)
     Next
-    For y = sy To Me.Height - sy Step sy
+    For y = sy To Height - sy Step sy
       e.Graphics.DrawLine(Pens.Black, 0, y, DisplayRectangle.Width, y)
     Next
 
@@ -659,7 +624,7 @@ Public Class Board
                 m_pieces(jumped.Row, jumped.Column) = State.None
                 m_pieces(drop.Row, drop.Column) = State.Active
                 m_pieceCount -= 1
-                m_history.Add(New History(m_rowColumn, drop))
+                m_history.Add(New GameHistory(m_rowColumn, drop))
                 RaiseEvent PieceMoved(Me, New MoveEventArgs(m_rowColumn, drop))
               End If
             End If
@@ -796,17 +761,5 @@ Public Class Board
     End If
 
   End Sub
-
-End Class
-
-Public Class History
-
-  Public Sub New(source As Board.RowColumn, destination As Board.RowColumn)
-    Me.Source = source
-    Me.Destination = destination
-  End Sub
-
-  Public ReadOnly Property Source() As Board.RowColumn
-  Public ReadOnly Property Destination() As Board.RowColumn
 
 End Class

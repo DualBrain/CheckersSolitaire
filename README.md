@@ -1,16 +1,16 @@
-# CheckersSolitaire
+# Checkers Solitaire
 
-An original game by designed by Cory Smith originally inspired by a game written circa 1978 by David H. Ahl. (VB.NET)
+<P align=center><IMG src="http://www.addressof.com/assets/img/checkerssolitaire_v0.1.jpg"><BR><EM>Shown with Hints enabled. (v0.1.5)</EM></P>
+
+An original game by designed by Cory Smith that is inspired by "[One Check](http://www.atariarchives.org/basicgames/showpage.php?page=122)" written circa 1978 by David H. Ahl.
 
 The simplest way to get started with the code is to use [Microsoft Visual Studio 2022 Community Edition](https://visualstudio.microsoft.com/) (It's FREE!).
 
-<P align=center><IMG src="http://www.addressof.com/articles/checkerssolitaire_v0.1.jpg"><BR><EM>Shown with Hints enabled. (v0.1.5)</EM></P>
-
-Gameplay:
+## Gameplay
 
 The object of the game is to remove as many pieces as possible by diagonally jumping other pieces (as in standard checkers).  The standard game consists of a 64-square board (8 by 8) and 48 game pieces.  It's relatively easy to remove 30 to 39 pieces, extremely challenging to remove 40 to 44 and nearly impossible to remove 45 to 47.
 
-Features:
+## Features
 
 - Complete undo history (per game). 
 - View history, so you can see what moves you made. 
@@ -25,21 +25,27 @@ Features:
 - (0.1.7) Allows you to not only save the history of your game, but you can now prove to your friends that you actually did get the score you say you did. ;-)
 - (0.1.8) Made the move to WinForms on .NET 5!!!
 - (0.1.8a) Made the move to .NET 6.
+- (0.1.8b) Made the move to .NET 7.
+- (0.1.9) Made the move to .NET 8; fixed Application.ProductVersion issue; totally refactored.
 
-History:
+## History
 
 This game was inspired by a game written by David H. Ahl that was published in a book written circa 1978 called [Basic Computer Games: Microcomputer Edition](http://www.atariarchives.org/basicgames/).  I started with the description of the game (which contained the rules) and wrote Checkers Solitaire from there.
 
 If your interested in finding out more about the game that inspired this one, you can actually read all about it yourself thanks to [AtariArchives.org](http://www.atariarchives.org/).  David's version of the game is called "[One Check](http://www.atariarchives.org/basicgames/showpage.php?page=122)" (following this link will take you to a scanned image of the pages from the book).  
 
-Update (2021-01-12): The last time I looked at this project was to make it available on GitHub back in 2012; prior to that it was published on AddressOf.com around 2005.  In this update, migrated to WinForms on .NET 5!
+This project was originally made available on [AddressOf.com](http://addressof.com) back in 2005 and then moved to GitHub (here) in 2012 with little to no changes. At the beginning of 2021, due to the release of .NET 5 and initial (official) support for Windows Forms on the new .NET "Core" platform, the project was migrated.
 
-Update (2022-08-04): In this update, migrated to WinForms on .NET 6!
-
-Notes:
+## Notes
 
 Currently, the game is pretty complete.  As with any development, there are still additional ideas... as to whether or not I'll continue development, time will only tell.  Some of this will probably depend on the interest and feedback.  It think it's a pretty cool game considering the time I have invested in putting it together.  Lemme know what you think. Also, this version has had limiting testing, so if you do find a problem, be sure to let me know.
 
-Special Thanks:
+## Discord
 
-Thanks to [Jason Bock](http://www.jasonbock.net/) for testing and providing feedback.
+Please reach out to me on Discord:
+
+- [Discord Invite](https://discord.gg/Y8EH5fF6WG)
+
+## Special Thanks
+
+Thanks to [Jason Bock](https://github.com/JasonBock) for testing and providing feedback (all those years ago).

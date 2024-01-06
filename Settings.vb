@@ -1,7 +1,3 @@
-Option Explicit On
-Option Strict On
-Option Infer On
-
 Imports System.Environment
 Imports System.IO
 Imports System.IO.IsolatedStorage
@@ -15,33 +11,29 @@ End Enum
 
 Public Class Settings
 
-  Private Const DefaultFileName As String = "settings.xml"
-  Private Const DefaultUseIsolatedStorage As Boolean = False
-
-  'Private m_rows As Integer = 8
-  'Private m_columns As Integer = 8
-  'Private m_depth As Integer = 2
+  Private Const DEFAUILT_FILENAME As String = "settings.xml"
+  Private Const DEFAULT_USE_ISOLATED_STORAGE As Boolean = False
 
 #Region "Loading and Saving"
 
   Overloads Shared Function GetFileStreamForWriting() As Stream
-    Return GetFileStreamForWriting(DefaultFileName, DefaultUseIsolatedStorage)
+    Return GetFileStreamForWriting(DEFAUILT_FILENAME, DEFAULT_USE_ISOLATED_STORAGE)
   End Function
 
   Overloads Shared Function GetFileStreamForWriting(filename As String) As Stream
-    Return GetFileStreamForWriting(filename, DefaultUseIsolatedStorage)
+    Return GetFileStreamForWriting(filename, DEFAULT_USE_ISOLATED_STORAGE)
   End Function
 
   Overloads Shared Function GetFileStreamForWriting(filename As String, useIsolatedStorage As Boolean) As Stream
     If useIsolatedStorage Then
-      Dim isf As IsolatedStorageFile
-      isf = IsolatedStorageFile.GetUserStoreForAssembly()
-      Dim file As New IsolatedStorageFileStream(filename, FileMode.Create, FileAccess.Write, FileShare.None, isf)
-      isf.Close()
-      Return file
+      Using isf = IsolatedStorageFile.GetUserStoreForAssembly()
+        Using file As New IsolatedStorageFileStream(filename, FileMode.Create, FileAccess.Write, FileShare.None, isf)
+          isf.Close()
+          Return file
+        End Using
+      End Using
     Else
-      Dim workingPath As String
-      workingPath = IO.Path.Combine(GetFolderPath(SpecialFolder.LocalApplicationData), Application.CompanyName)
+      Dim workingPath = IO.Path.Combine(GetFolderPath(SpecialFolder.LocalApplicationData), Application.CompanyName)
       workingPath = IO.Path.Combine(workingPath, Application.ProductName)
       If Not IO.Directory.Exists(workingPath) Then
         Directory.CreateDirectory(workingPath)
@@ -52,23 +44,23 @@ Public Class Settings
   End Function
 
   Overloads Shared Function GetFileStreamForReading() As Stream
-    Return GetFileStreamForReading(DefaultFileName, DefaultUseIsolatedStorage)
+    Return GetFileStreamForReading(DEFAUILT_FILENAME, DEFAULT_USE_ISOLATED_STORAGE)
   End Function
 
   Overloads Shared Function GetFileStreamForReading(filename As String) As Stream
-    Return GetFileStreamForReading(filename, DefaultUseIsolatedStorage)
+    Return GetFileStreamForReading(filename, DEFAULT_USE_ISOLATED_STORAGE)
   End Function
 
   Overloads Shared Function GetFileStreamForReading(filename As String, useIsolatedStorage As Boolean) As Stream
     If useIsolatedStorage Then
-      Dim isf As IsolatedStorageFile
-      isf = IO.IsolatedStorage.IsolatedStorageFile.GetUserStoreForAssembly()
-      Dim file As New IsolatedStorageFileStream(filename, IO.FileMode.OpenOrCreate, FileAccess.Read, FileShare.Read, isf)
-      isf.Close()
-      Return file
+      Using isf = IO.IsolatedStorage.IsolatedStorageFile.GetUserStoreForAssembly()
+        Using file As New IsolatedStorageFileStream(filename, IO.FileMode.OpenOrCreate, FileAccess.Read, FileShare.Read, isf)
+          isf.Close()
+          Return file
+        End Using
+      End Using
     Else
-      Dim workingPath As String
-      workingPath = IO.Path.Combine(GetFolderPath(SpecialFolder.LocalApplicationData), Application.CompanyName)
+      Dim workingPath = IO.Path.Combine(GetFolderPath(SpecialFolder.LocalApplicationData), Application.CompanyName)
       workingPath = IO.Path.Combine(workingPath, Application.ProductName)
       If Not IO.Directory.Exists(workingPath) Then
         Directory.CreateDirectory(workingPath)
@@ -80,8 +72,9 @@ Public Class Settings
 
   Shared Sub Persist(settings As Settings)
     Try
-      Dim outputStream As Stream = GetFileStreamForWriting()
-      Persist(settings, outputStream)
+      Using outputStream = GetFileStreamForWriting()
+        Persist(settings, outputStream)
+      End Using
     Catch ex As Exception
       Dim e As New IOException("Could not save Settings", ex)
       Throw e
@@ -104,8 +97,9 @@ Public Class Settings
 
   Shared Function Load() As Settings
     Try
-      Dim inputStream As Stream = GetFileStreamForReading()
-      Return Load(inputStream)
+      Using inputStream = GetFileStreamForReading()
+        Return Load(inputStream)
+      End Using
     Catch ex As Exception
       Dim e As New IOException("Could not load Settings", ex)
       Throw e

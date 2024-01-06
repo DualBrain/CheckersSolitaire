@@ -1,7 +1,7 @@
 Public Class HlsManager
 
   Private Class NativeMethods
-    Public Declare Sub ColorRGBToHLS Lib "shlwapi.dll" (RGB As Integer, ByRef h As Byte, ByRef l As Byte, ByRef s As Byte)
+    Public Declare Sub ColorRGBToHLS Lib "shlwapi.dll" (rgb As Integer, ByRef h As Byte, ByRef l As Byte, ByRef s As Byte)
     Public Declare Function ColorHLSToRGB Lib "shlwapi.dll" (h As Byte, l As Byte, s As Byte) As Integer
   End Class
 
@@ -18,13 +18,13 @@ Public Class HlsManager
     Dim _h As Byte '= 0
     Dim _l As Byte '= 0
     Dim _s As Byte '= 0
-    Dim R As Integer = c.R
-    Dim G As Integer = c.G
-    Dim B As Integer = c.B
+    Dim r As Integer = c.R
+    Dim g As Integer = c.G
+    Dim b As Integer = c.B
 
-    B <<= 16
-    G <<= 8
-    Dim rgb As Integer = B + G + R
+    b <<= 16
+    g <<= 8
+    Dim rgb = b + g + r
 
     NativeMethods.ColorRGBToHLS(rgb, vh, vl, vs)
 
@@ -49,8 +49,8 @@ Public Class HlsManager
     Else
       _s += System.Convert.ToByte(vs + s)
     End If
-    Dim clr As Integer = NativeMethods.ColorHLSToRGB(_h, _l, _s)
-    Dim col As Color = Color.FromArgb(clr)
+    Dim clr = NativeMethods.ColorHLSToRGB(_h, _l, _s)
+    Dim col = Color.FromArgb(clr)
 
     Return Color.FromArgb(255, col.B, col.G, col.R)
 
@@ -65,8 +65,7 @@ Public Class HlsManager
   End Function
 
   Public Shared Function SurroundColors(c As Color) As Color()
-    Dim colors As Color() = {Convert(c, 0, -17, 0)}
-    Return colors
+    Return {Convert(c, 0, -17, 0)}
   End Function
 
   Public Shared Function DarkColor(c As Color) As Color
@@ -86,8 +85,7 @@ Public Class HlsManager
   End Function
 
   Public Shared Function SurroundColorsLight(c As Color) As Color()
-    Dim colors As Color() = {Convert(c, 0, -5, 0)}
-    Return colors
+    Return {Convert(c, 0, -5, 0)}
   End Function
 
 #End Region
@@ -99,8 +97,7 @@ Public Class HlsManager
   End Function
 
   Public Shared Function SurroundColorsDark(c As Color) As Color()
-    Dim colors As Color() = {Convert(c, 0, -30, 0)}
-    Return colors
+    Return {Convert(c, 0, -30, 0)}
   End Function
 
 #End Region
@@ -112,8 +109,7 @@ Public Class HlsManager
   End Function
 
   Public Shared Function SurroundColorsD(c As Color) As Color()
-    Dim colors As Color() = {Convert(c, 0, -20, 0)}
-    Return colors
+    Return {Convert(c, 0, -20, 0)}
   End Function
 
   Public Shared Function DarkColorD(c As Color) As Color
@@ -189,8 +185,7 @@ Public Class HlsManager
   End Function
 
   Public Shared Function TestSurroundColors(c As Color) As Color()
-    Dim colors As Color() = {Convert(c, 5, -4, 16)}
-    Return colors
+    Return {Convert(c, 5, -4, 16)}
   End Function
 
 #End Region
